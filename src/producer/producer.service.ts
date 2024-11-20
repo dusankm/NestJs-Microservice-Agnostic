@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { OrderDto } from '../dtos/order.dto';
 import { timeout } from 'rxjs';
+import { PokemonDto } from '../dtos/pokemon.dto';
 
 @Injectable()
 export class ProducerService {
@@ -19,5 +20,11 @@ export class ProducerService {
     return this.clientProxy
       .send({ cmd: 'fetch-orders' }, {})
       .pipe(timeout(5000));
+  }
+
+  getPokemon(pokemon: PokemonDto) {
+    return this.clientProxy
+      .send({ cmd: 'fetch-pokemon' }, pokemon)
+      .pipe(timeout(5000)); // Tiempo de espera para la respuesta
   }
 }

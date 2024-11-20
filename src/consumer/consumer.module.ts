@@ -5,9 +5,11 @@ import { ConsumerController } from './consumer.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule } from '@nestjs/microservices';
 import { getDLQClientOptions } from '../messaging/messaging-connection.config';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
+    HttpModule,
     ConfigModule, // Asegura que ConfigModule esté disponible
     ClientsModule.registerAsync([
       {

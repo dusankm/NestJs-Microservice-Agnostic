@@ -1,5 +1,5 @@
 // src/producer/producer.controller.ts
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { OrderDto } from '../dtos/order.dto';
 import { ProducerService } from './producer.service';
 
@@ -15,5 +15,10 @@ export class ProducerController {
   @Get()
   getOrders() {
     return this.producerService.getOrders();
+  }
+
+  @Get('pokemon')
+  getPokemon(@Query('name') name: string) {
+    return this.producerService.getPokemon({ name });
   }
 }
